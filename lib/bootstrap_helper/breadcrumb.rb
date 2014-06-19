@@ -20,7 +20,7 @@ module BootstrapHelper
 
       def drop_breadcrumb(title=nil, url=nil)
         title ||= @page_title
-        
+
         if title && url
           @breadcrumbs.push("<a href='#{url}'>#{title}</a>".html_safe)
         elsif title
@@ -47,14 +47,8 @@ module BootstrapHelper
 
         @breadcrumbs.each_with_index do |c, i|
           breadcrumb_class = []
-          breadcrumb_class << "first" if i == 0
-          breadcrumb_class << "last active" if i == (@breadcrumbs.length - 1)
-
-          if i == (@breadcrumbs.length - 1)
-            breadcrumb_content = c
-          else
-            breadcrumb_content = c + " " + content_tag(:span, "/", :class => "divider")
-          end
+          breadcrumb_class << "active" if i == (@breadcrumbs.length - 1)
+          breadcrumb_content = c
 
           crumb += content_tag(:li, breadcrumb_content ,:class => breadcrumb_class ) + "\n"
         end
@@ -62,5 +56,5 @@ module BootstrapHelper
       end
     end
   end
-  
+
 end
